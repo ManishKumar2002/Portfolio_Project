@@ -1,3 +1,192 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --accent-orange: #ff7100;
+    --accent-lime: #3bff00;
+    --bg-elev: rgba(255, 255, 255, 0.03);
+}
+
+/* Utility: glass effect used in navbar, buttons */
+.glass {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* Gradient text */
+.gradient-text {
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-lime));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Floating/slow animations */
+@keyframes floaty {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes hue {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    50% {
+        filter: hue-rotate(45deg);
+    }
+
+    100% {
+        filter: hue-rotate(0deg);
+    }
+}
+
+.anim-float {
+    animation: floaty 6s ease-in-out infinite;
+}
+
+.anim-spin-slow {
+    animation: spin-slow 18s linear infinite;
+}
+
+.anim-hue {
+    animation: hue 8s ease-in-out infinite;
+}
+
+/* Per-page backgrounds and accents */
+.page-home,
+.page-about,
+.page-projects,
+.page-skills,
+.page-experience,
+.page-education,
+.page-contact {
+    background: url(/hero-bg.jpg) no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+/* Accent outline utilities */
+.accent-ring-orange {
+    box-shadow: 0 0 0 4px rgba(255, 113, 0, 0.06), 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.accent-ring-lime {
+    box-shadow: 0 0 0 4px rgba(59, 255, 0, 0.06), 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Small helper for buttons using theme */
+.btn-accent {
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-lime));
+    color: #061018;
+}
+
+/* Make sure body respects dark mode default from Tailwind's class strategy */
+html.dark body {
+    background-color: #020617;
+}
+
+/* small responsive tweak for large headings with gradient stroke */
+.hero-badge {
+    background: conic-gradient(from 120deg, var(--accent-orange), var(--accent-lime));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Subtle entry animation utilities for sections */
+.reveal-up {
+    transform: translateY(18px);
+    opacity: 0;
+    animation: revealUp 0.7s forwards cubic-bezier(.2, .9, .2, 1);
+}
+
+@keyframes revealUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Decorative animated blobs for hero/backgrounds */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(64px);
+    opacity: 0.75;
+    transform: translate3d(0, 0, 0);
+    pointer-events: none;
+}
+
+.blob--one {
+    width: 520px;
+    height: 520px;
+    left: -8%;
+    top: -12%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 113, 0, 0.95), transparent 35%),
+        radial-gradient(circle at 70% 70%, rgba(59, 255, 0, 0.85), transparent 35%);
+    animation: floaty 9s ease-in-out infinite, hue 10s linear infinite;
+}
+
+.blob--two {
+    width: 420px;
+    height: 420px;
+    right: -6%;
+    bottom: -10%;
+    background: radial-gradient(circle at 30% 30%, rgba(59, 255, 0, 0.95), transparent 35%),
+        radial-gradient(circle at 70% 70%, rgba(255, 113, 0, 0.9), transparent 35%);
+    animation: floaty 11s ease-in-out infinite reverse, hue 12s linear infinite;
+}
+
+@media (max-width: 768px) {
+
+    .blob--one,
+    .blob--two {
+        filter: blur(40px);
+        opacity: 0.6;
+    }
+
+    .blob--one {
+        width: 360px;
+        height: 360px;
+        left: -18%;
+        top: -20%;
+    }
+
+    .blob--two {
+        width: 300px;
+        height: 300px;
+        right: -20%;
+        bottom: -20%;
+    }
+}
+
+/* Hero-specific utilities */
+.hero-graphic {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-overlay {
+    position: relative;
+    z-index: 20;
+}

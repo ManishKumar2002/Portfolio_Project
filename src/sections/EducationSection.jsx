@@ -36,7 +36,8 @@ export default function EducationSection() {
             link: "https://unstop.com/certificate-preview/a48826c4-5672-4acf-9f79-dd191e257ae4"
         },
         {
-            title: "Programming with Python"
+            title: "Programming in Python",
+            link: "https://www.coursera.org/account/accomplishments/certificate/NB6X4XWYXEDZ"
         },
     ];
 

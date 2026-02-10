@@ -7,8 +7,8 @@ export default {
       colors: {
         primary: "#4263eb",
         secondary: "#63e6be",
-        accentOrange: "#ff7100",
-        accentLime: "#3bff00",
+        accentOrange: "#00efff",
+        accentLime: "#0024ff",
       },
       container: {
         center: true,

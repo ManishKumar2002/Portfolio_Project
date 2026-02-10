@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
-    --accent-orange: #ff7100;
-    --accent-lime: #3bff00;
+    --accent-orange: #00efff;
+    --accent-lime: #0024ff;
     --bg-elev: rgba(255, 255, 255, 0.03);
 }
 
@@ -21,6 +26,13 @@
     background-clip: text;
     color: transparent;
 }
+
+/* Section Title Styles */
+.section-title {
+    @apply text-5xl font-bold gradient-text leading-none;
+    line-height: normal !important;
+}
+
 
 /* Floating/slow animations */
 @keyframes floaty {
@@ -61,6 +73,30 @@
     }
 }
 
+@keyframes tilt-shift {
+
+    0%,
+    100% {
+        transform: perspective(1200px) rotateX(0deg) rotateY(0deg);
+    }
+
+    50% {
+        transform: perspective(1200px) rotateX(2deg) rotateY(2deg);
+    }
+}
+
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 113, 0, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(59, 255, 0, 0.5);
+    }
+}
+
 .anim-float {
     animation: floaty 6s ease-in-out infinite;
 }
@@ -71,6 +107,14 @@
 
 .anim-hue {
     animation: hue 8s ease-in-out infinite;
+}
+
+.anim-tilt {
+    animation: tilt-shift 4s ease-in-out infinite;
+}
+
+.anim-glow {
+    animation: glow-pulse 3s ease-in-out infinite;
 }
 
 /* Per-page backgrounds and accents */
@@ -88,11 +132,11 @@
 
 /* Accent outline utilities */
 .accent-ring-orange {
-    box-shadow: 0 0 0 4px rgba(255, 113, 0, 0.06), 0 6px 18px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 0 4px rgba(0, 239, 255, 0.06), 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
 .accent-ring-lime {
-    box-shadow: 0 0 0 4px rgba(59, 255, 0, 0.06), 0 6px 18px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 0 4px rgba(0, 36, 255, 0.06), 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
 /* Small helper for buttons using theme */
@@ -142,8 +186,8 @@ html.dark body {
     height: 520px;
     left: -8%;
     top: -12%;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 113, 0, 0.95), transparent 35%),
-        radial-gradient(circle at 70% 70%, rgba(59, 255, 0, 0.85), transparent 35%);
+    background: radial-gradient(circle at 30% 30%, rgba(0, 239, 255, 0.95), transparent 35%),
+        radial-gradient(circle at 70% 70%, rgba(0, 36, 255, 0.85), transparent 35%);
     animation: floaty 9s ease-in-out infinite, hue 10s linear infinite;
 }
 
@@ -152,8 +196,8 @@ html.dark body {
     height: 420px;
     right: -6%;
     bottom: -10%;
-    background: radial-gradient(circle at 30% 30%, rgba(59, 255, 0, 0.95), transparent 35%),
-        radial-gradient(circle at 70% 70%, rgba(255, 113, 0, 0.9), transparent 35%);
+    background: radial-gradient(circle at 30% 30%, rgba(0, 36, 255, 0.95), transparent 35%),
+        radial-gradient(circle at 70% 70%, rgba(0, 239, 255, 0.9), transparent 35%);
     animation: floaty 11s ease-in-out infinite reverse, hue 12s linear infinite;
 }
 
@@ -189,4 +233,22 @@ html.dark body {
 .hero-overlay {
     position: relative;
     z-index: 20;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--accent-orange), var(--accent-lime));
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--accent-lime), var(--accent-orange));
 }

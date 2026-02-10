@@ -102,7 +102,7 @@ export default function HeroSection() {
 
                 {/* Download Resume Button */}
                 <motion.a
-                    href="https://drive.google.com/file/d/1xjd8VI-i87bCuHZqtc2snOzQVuOb_vuC/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1yAJWcJdfX-RryvDaJRzp0ZNLjo1BlN9e/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ y: 20, opacity: 0 }}

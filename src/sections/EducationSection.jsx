@@ -32,7 +32,7 @@ export default function EducationSection() {
             link: "https://www.coursera.org/account/accomplishments/verify/2YKHT9P39ACG"
         },
         {
-            title: "Certificate of Participation in Level 1 (Qualifier): E-Commerce (Amoung Top-20 Teams within Institute)",
+            title: "Certificate of Participation in Level 1 (Qualifier): E-Commerce (Among Top-20 Teams within Institute)",
             link: "https://unstop.com/certificate-preview/a48826c4-5672-4acf-9f79-dd191e257ae4"
         },
         {

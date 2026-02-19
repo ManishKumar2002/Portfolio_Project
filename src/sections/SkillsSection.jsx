@@ -5,23 +5,19 @@ export default function SkillsSection() {
     const skills = [
         {
             category: "Languages",
-            items: ["C#", "JavaScript", "TypeScript"]
+            items: ["JavaScript", "TypeScript"]
         },
         {
             category: "Frontend",
             items: ["React", "Angular", "HTML", "CSS", "Bootstrap"]
         },
         {
-            category: "Backend",
-            items: ["ASP.NET MVC", "ASP.NET Web API"]
-        },
-        {
-            category: "Database",
-            items: ["SQL Server", "SQL"]
+            category: "API Integration",
+            items: ["REST API integration", "HTTP Client", "JSON handling"]
         },
         {
             category: "Tools",
-            items: ["Git", "VS Code", "Visual Studio", "Postman", "SSMS"]
+            items: ["Git", "VS Code", "Postman"]
         }
     ];
 

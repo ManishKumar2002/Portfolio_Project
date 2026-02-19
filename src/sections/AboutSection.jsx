@@ -21,7 +21,7 @@ export default function AboutSection() {
                             transition={{ delay: 0.1 }}
                         >
                             Hi, I'm <span className="font-semibold text-cyan-300">Manish Kumar</span> —
-                            a <span className="gradient-text">Frontend-Focused Full Stack Developer</span>.
+                            a <span className="gradient-text">Frontend Developer</span> focused on building modern, responsive, and high-performance web applications.
                         </motion.p>
 
                         <motion.p
@@ -30,12 +30,11 @@ export default function AboutSection() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
                         >
-                            I have over <span className="text-white font-medium">2 years of professional experience</span> building modern, scalable web applications using
-                            <span className="gradient-text"> Angular</span>,
-                            <span className="gradient-text"> React</span>, and
-                            <span className="gradient-text"> .NET</span>.
-                            I primarily focus on crafting clean, responsive, and user-friendly interfaces,
-                            while also having strong experience working with backend systems and APIs.
+                            I have over <span className="text-white font-medium">2 years of professional experience</span> working extensively with
+                            <span className="gradient-text"> Angular</span> and
+                            <span className="gradient-text"> React</span>, developing scalable user interfaces with
+                            <span className="text-white font-medium"> TypeScript, JavaScript, HTML, CSS, and Bootstrap</span>.
+                            My primary focus is crafting clean UI architecture, reusable components, and seamless user experiences.
                         </motion.p>
 
                         <motion.p
@@ -44,12 +43,11 @@ export default function AboutSection() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.3 }}
                         >
-                            Currently, I work as an <span className="text-white font-medium">Associate Software Developer</span> at <span className="text-white">KMA Technoware Private Limited</span>,
-                            where I develop and maintain
-                            enterprise applications with a strong emphasis on frontend development using Angular.
-                            I collaborate closely with backend services to integrate APIs, handle dynamic data,
-                            and improve overall application performance and user experience.
-                            I also contribute to backend logic and SQL Server optimization to ensure efficient data flow.
+                            Currently, I work as an <span className="text-white font-medium">Associate Software Developer</span> at
+                            <span className="text-white"> KMA Technoware Private Limited</span>, where I build and maintain
+                            enterprise-level frontend applications using Angular and React. I collaborate closely with backend teams
+                            to integrate REST APIs, manage dynamic data rendering, and enhance overall application
+                            performance and responsiveness.
                         </motion.p>
 
                         <motion.p
@@ -58,10 +56,10 @@ export default function AboutSection() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.4 }}
                         >
-                            Earlier in my career, I completed a <span className="text-white font-medium">Full Stack Internship</span> at <span className="text-white">High Radius Technologies</span>,
-                            where I built responsive UI components
-                            using React, implemented reusable components, and integrated backend APIs while working
-                            in an agile development environment.
+                            During my internship at
+                            <span className="text-white"> High Radius Technologies</span>,
+                            I developed responsive UI components using React, implemented reusable component patterns,
+                            and worked in an agile environment with Git-based version control.
                         </motion.p>
 
                         <motion.p
@@ -70,10 +68,10 @@ export default function AboutSection() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.5 }}
                         >
-                            I've worked on projects including a university website and admin portal with role-based access control,
-                            interactive JavaScript-based applications, and a responsive e-commerce platform with cart and checkout
-                            functionality. I enjoy building intuitive frontend experiences and collaborating with teams to deliver
-                            reliable, well-structured full stack solutions.
+                            I enjoy transforming complex requirements into intuitive frontend experiences.
+                            My projects include admin dashboards with role-based access control, interactive web applications,
+                            and responsive e-commerce platforms with dynamic cart and checkout flows.
+                            I am passionate about writing maintainable code and continuously improving UI performance and usability.
                         </motion.p>
                     </div>
                 </motion.div>

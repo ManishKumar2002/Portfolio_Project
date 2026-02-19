@@ -5,7 +5,7 @@ export default function HeroSection() {
     return (
         <section
             id="home"
-            className="min-h-screen flex flex-col justify-center items-center text-center overflow-hidden pt-20 relative"
+            className="min-h-screen flex flex-col justify-center items-center text-center overflow-hidden relative"
         >
             {/* Content wrapper */}
             <div className="relative z-10 flex flex-col items-center justify-center w-full">
@@ -70,7 +70,7 @@ export default function HeroSection() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                     className="text-xl text-gray-300 mt-4"
                 >
-                    Software Developer | Full Stack Developer
+                    Associate Software Developer | Front-End Developer
                 </motion.p>
 
                 {/* Social Icons */}
@@ -102,7 +102,7 @@ export default function HeroSection() {
 
                 {/* Download Resume Button */}
                 <motion.a
-                    href="https://drive.google.com/file/d/1yAJWcJdfX-RryvDaJRzp0ZNLjo1BlN9e/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1CLVB07U6tFy0IgtOCX4tDLnBdDUHtLr8/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ y: 20, opacity: 0 }}

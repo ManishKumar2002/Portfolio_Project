@@ -66,7 +66,7 @@ export default function LoadingScreen({ onLoadComplete }) {
                     transition={{ delay: 0.4 }}
                     className="text-gray-400"
                 >
-                    Software Developer
+                    Associate Software Developer | Front-End Developer
                 </motion.p>
 
                 {/* Animated Loading Dots */}

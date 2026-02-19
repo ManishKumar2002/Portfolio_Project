@@ -25,8 +25,8 @@ export default function ProjectsSection() {
         {
             title: "GJU Hisar Website & Admin Panel",
             description:
-                "University website and admin portal developed using ASP.NET MVC and SQL Server with role-based access control.",
-            tech: ["ASP.NET MVC", "SQL Server", "HTML", "CSS"],
+                "University website and admin portal developed using ASP.NET MVC and HTML/CSS with role-based access control.",
+            tech: ["ASP.NET MVC", "JavaScript", "HTML", "CSS"],
             live: "https://gjust.ac.in",
             previewImage: "/gjust_website.png"
         },

@@ -7,10 +7,11 @@ export default function ExperienceSection() {
             company: "KMA Technoware Private Limited",
             period: "Aug 2023 – Present",
             points: [
-                "Developed and maintained applications using .NET and Angular, improving performance and scalability.",
-                "Designed and consumed APIs for seamless data integration between modules.",
-                "Optimized SQL Server queries, significantly reducing data retrieval time.",
-                "Collaborated closely with cross-functional teams to ensure timely and high-quality delivery."
+                "Developed and maintained dynamic frontend applications using Angular and React.",
+                "Built reusable UI components and implemented modular architecture for scalability.",
+                "Integrated REST APIs to fetch and display dynamic data efficiently.",
+                "Improved UI responsiveness and optimized client-side performance.",
+                "Collaborated with backend teams to ensure smooth API consumption and seamless data flow."
             ]
         },
         {

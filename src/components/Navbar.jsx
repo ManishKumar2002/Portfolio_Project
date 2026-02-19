@@ -6,8 +6,8 @@ const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
     { id: "experience", label: "Experience" },
-    { id: "projects", label: "Projects" },
     { id: "skills", label: "Skills" },
+    { id: "projects", label: "Projects" },
     { id: "education", label: "Education" },
     { id: "contact", label: "Contact" },
 ];
@@ -57,8 +57,8 @@ export default function Navbar() {
                             transition={{ delay: idx * 0.05 }}
                             onClick={() => scrollToSection(item.id)}
                             className={`px-4 py-2 rounded-lg transition ${activeSection === item.id
-                                    ? "bg-gradient-to-r from-[var(--accent-orange)] to-[var(--accent-lime)] text-black/90 shadow-md"
-                                    : "text-gray-300 hover:bg-white/5 hover:scale-105"
+                                ? "bg-gradient-to-r from-[var(--accent-orange)] to-[var(--accent-lime)] text-black/90 shadow-md"
+                                : "text-gray-300 hover:bg-white/5 hover:scale-105"
                                 }`}
                         >
                             {item.label}
@@ -88,8 +88,8 @@ export default function Navbar() {
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
                                 className={`px-4 py-3 rounded-lg text-left transition ${activeSection === item.id
-                                        ? "bg-gradient-to-r from-[var(--accent-orange)] to-[var(--accent-lime)] text-black/90"
-                                        : "text-gray-300 hover:bg-white/5"
+                                    ? "bg-gradient-to-r from-[var(--accent-orange)] to-[var(--accent-lime)] text-black/90"
+                                    : "text-gray-300 hover:bg-white/5"
                                     }`}
                             >
                                 {item.label}

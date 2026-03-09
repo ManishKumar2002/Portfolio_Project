@@ -5,13 +5,22 @@ export default function ExperienceSection() {
         {
             title: "Associate Software Developer",
             company: "KMA Technoware Private Limited",
-            period: "Aug 2023 – Present",
+            period: "Jan 2024 – Present",
             points: [
                 "Developed and maintained dynamic frontend applications using Angular and React.",
-                "Built reusable UI components and implemented modular architecture for scalability.",
                 "Integrated REST APIs to fetch and display dynamic data efficiently.",
                 "Improved UI responsiveness and optimized client-side performance.",
                 "Collaborated with backend teams to ensure smooth API consumption and seamless data flow."
+            ]
+        },
+        {
+            title: "Full Stack Intern",
+            company: "KMA Technoware Private Limited",
+            period: "Aug 2023 – Jan 2024",
+            points: [
+                "Contributed to the development of web applications using Angular and React.",
+                "Assisted in building responsive UI components and integrating them with backend APIs.",
+                "Gained experience in state management and component-based architecture."
             ]
         },
         {

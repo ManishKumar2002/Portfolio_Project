@@ -17,7 +17,7 @@ export default function HeroSection() {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     whileHover={{ scale: 1.08 }}
                     animate={{ y: [0, -8, 0] }}
-                    className="relative w-40 h-40 flex items-center justify-center cursor-pointer"
+                    className="relative w-40 h-40 flex items-center justify-center"
                 >
                     {/* Glow Ring */}
                     <div

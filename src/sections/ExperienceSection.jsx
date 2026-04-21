@@ -5,7 +5,7 @@ export default function ExperienceSection() {
         {
             title: "Associate Software Developer",
             company: "KMA Technoware Private Limited",
-            period: "Jan 2024 – Present",
+            period: "Aug 2024 – Present",
             points: [
                 "Developed and maintained dynamic frontend applications using Angular and React.",
                 "Integrated REST APIs to fetch and display dynamic data efficiently.",
@@ -16,7 +16,7 @@ export default function ExperienceSection() {
         {
             title: "Full Stack Intern",
             company: "KMA Technoware Private Limited",
-            period: "Aug 2023 – Jan 2024",
+            period: "Aug 2023 – July 2024",
             points: [
                 "Contributed to the development of web applications using Angular and React.",
                 "Assisted in building responsive UI components and integrating them with backend APIs.",

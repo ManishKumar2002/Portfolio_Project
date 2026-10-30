@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 
 export default function ProjectsSection() {
 
@@ -72,42 +72,20 @@ export default function ProjectsSection() {
                                 viewport={{ once: true }}
                                 whileHover={{ scale: 1.02 }}
                                 transition={{ delay: i * 0.1 }}
-                                className="group rounded-xl bg-white/5 hover:bg-white/10 transition-all p-6 flex gap-6"
+                                className="group rounded-xl bg-white/5 hover:bg-white/10 transition-all p-5 md:p-6 flex flex-col md:flex-row gap-6"
                             >
-                                {/* PREVIEW IMAGE + ICON OVERLAY */}
-                                <div className="relative shrink-0 w-20 h-20 rounded-lg overflow-hidden border border-white/10 bg-gradient-to-br from-indigo-500/30 to-purple-600/30 group">
-
-                                    {/* Preview Image (hidden → visible on hover) */}
+                                {/* Larger, always-visible screenshots of the existing projects */}
+                                <div className="w-full md:w-64 lg:w-72 shrink-0 aspect-video rounded-lg overflow-hidden border border-white/10 bg-slate-900/70 flex items-center justify-center">
                                     <img
                                         src={project.previewImage}
-                                        alt={project.title}
-                                        className="
-                                                absolute inset-0 w-full h-full object-contain
-                                                opacity-0 scale-110
-                                                transition-all duration-300 ease-out
-                                                group-hover:opacity-100 group-hover:scale-100
-                                            "
+                                        alt={`${project.title} screenshot`}
+                                        loading="lazy"
+                                        className="w-full h-full object-contain"
                                     />
-
-                                    {/* Icon Overlay */}
-                                    <div
-                                        className="
-                                                absolute inset-0 flex items-center justify-center
-                                                transition-all duration-300
-                                                group-hover:bg-black/30
-                                            "
-                                    >
-                                        <Code2
-                                            size={26}
-                                            className="text-white opacity-90 drop-shadow-lg"
-                                        />
-                                    </div>
                                 </div>
 
-
-
                                 {/* CONTENT */}
-                                <div className="flex-1">
+                                <div className="flex-1 min-w-0">
                                     <h3 className="text-xl font-bold">{project.title}</h3>
 
                                     <p className="text-gray-300 text-sm leading-relaxed mb-4">

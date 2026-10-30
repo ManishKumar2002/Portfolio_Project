@@ -68,9 +68,19 @@ export default function HeroSection() {
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4, duration: 0.6 }}
-                    className="text-xl text-gray-300 mt-4"
+                    className="text-lg md:text-xl text-gray-300 mt-4 px-4"
                 >
-                    Associate Software Developer | Front-End Developer
+                    Frontend Developer | UI/UX Developer
+                </motion.p>
+
+                <motion.p
+                    initial={{ y: 16, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 0.6 }}
+                    className="mt-3 max-w-2xl px-5 text-base text-gray-400 leading-relaxed"
+                >
+                    I build responsive websites and web applications with a focus on clear layouts and easy-to-use interfaces.
                 </motion.p>
 
                 {/* Social Icons */}

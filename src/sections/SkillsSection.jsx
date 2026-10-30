@@ -13,7 +13,8 @@ import {
 
 import {
     SiTypescript,
-    SiPostman
+    SiPostman,
+    SiFigma
 } from "react-icons/si";
 
 import { VscCode } from "react-icons/vsc";
@@ -22,6 +23,7 @@ import { TbApi } from "react-icons/tb";
 export default function SkillsSection() {
 
     const skills = [
+        { name: "Figma", icon: SiFigma, color: "text-pink-400" },
         { name: "Angular", icon: FaAngular, color: "text-red-500" },
         { name: "React", icon: FaReact, color: "text-cyan-400" },
         { name: "HTML", icon: FaHtml5, color: "text-orange-500" },
@@ -69,7 +71,7 @@ export default function SkillsSection() {
                 >
 
                     <h2 className="section-title text-center">
-                        Technical Skills
+                        Frontend & UI/UX Skills
                     </h2>
 
                     <motion.div

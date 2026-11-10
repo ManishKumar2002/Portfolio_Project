@@ -23,14 +23,14 @@ import { TbApi } from "react-icons/tb";
 export default function SkillsSection() {
 
     const skills = [
-        { name: "Figma", icon: SiFigma, color: "text-pink-400" },
-        { name: "Angular", icon: FaAngular, color: "text-red-500" },
         { name: "React", icon: FaReact, color: "text-cyan-400" },
+        { name: "JavaScript", icon: FaJs, color: "text-yellow-400" },
+        { name: "Figma", icon: SiFigma, color: "text-pink-400" },
+        { name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
         { name: "HTML", icon: FaHtml5, color: "text-orange-500" },
         { name: "CSS", icon: FaCss3, color: "text-blue-500" },
-        { name: "JavaScript", icon: FaJs, color: "text-yellow-400" },
-        { name: "TypeScript", icon: SiTypescript, color: "text-blue-600" },
         { name: "Bootstrap", icon: FaBootstrap, color: "text-purple-500" },
+        { name: "Angular", icon: FaAngular, color: "text-red-500" },
         { name: "REST API Integration", icon: TbApi, color: "text-green-400" },
         { name: "HTTP Client", icon: TbApi, color: "text-green-400" },
         { name: "Git", icon: FaGit, color: "text-orange-600" },

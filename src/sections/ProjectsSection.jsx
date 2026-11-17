@@ -1,49 +1,96 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 
-// GitHub blocks its pages from being embedded directly. Use a lightweight
-// repository preview inside an iframe instead of a broken github.com iframe.
-// The portfolio also uses this for its own project card to avoid recursive embeds.
-function createInfoFrame(project) {
-  const isGithub = Boolean(project.github);
-  const url = project.github || project.live;
-  const title = isGithub ? "GitHub repository" : "Portfolio website";
-  const description = isGithub
-    ? project.github.replace("https://github.com/", "")
-    : "You are viewing this portfolio.";
-  const action = isGithub ? "Open repository" : "Open portfolio";
-  const escapeHtml = (text) =>
-    String(text).replace(/[&<>"']/g, (char) => ({
-      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-    }[char]));
+const DESKTOP_PREVIEW_WIDTH = 1440;
+const DESKTOP_PREVIEW_HEIGHT = 900;
 
-  return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; padding: 14px 18px; background: #111827;
-      color: #f9fafb; font-family: system-ui, -apple-system, sans-serif; }
-    .label { color: #9ca3af; text-transform: uppercase; font-size: 10px;
-      font-weight: 700; letter-spacing: 1.2px; }
-    .name { font-size: clamp(15px, 5vw, 20px); font-weight: 700;
-      overflow-wrap: anywhere; margin: 8px 0 6px; line-height: 1.25; }
-    .description { font-size: 11px; color: #cbd5e1; margin: 0 0 12px;
-      overflow-wrap: anywhere; }
-    a { font-size: 12px; font-weight: 600; color: #a5b4fc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-  </style>
-</head>
-<body>
-  <div class="label">${escapeHtml(title)}</div>
-  <div class="name">${escapeHtml(project.title)}</div>
-  <p class="description">${escapeHtml(description)}</p>
-  <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(action)} &#8599;</a>
-</body>
-</html>`;
+// Show the first screen of a desktop-sized site, scaled down into the card.
+// Disable iframe interaction so a project preview behaves like a thumbnail.
+function ProjectPreview({ project }) {
+  const containerRef = useRef(null);
+  const [scale, setScale] = useState(0.25);
+  const [githubImageFailed, setGithubImageFailed] = useState(false);
+
+  useEffect(() => {
+    if (!project.live || !containerRef.current) return;
+
+    const node = containerRef.current;
+    const updateScale = () => {
+      setScale(node.getBoundingClientRect().width / DESKTOP_PREVIEW_WIDTH);
+    };
+
+    updateScale();
+    const observer = new ResizeObserver(updateScale);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [project.live]);
+
+  const isOwnPortfolio = project.live?.includes("portfolio-manishkr.vercel.app");
+  const previewUrl = isOwnPortfolio
+    ? project.live + (project.live.includes("?") ? "&" : "?") + "portfolioPreview=1"
+    : project.live;
+
+  // GitHub blocks iframes, but provides a generated Open Graph repository preview.
+  const githubRepository = project.github?.replace(/^https:\/\/github\.com\//, "");
+  const githubPreview = githubRepository
+    ? `https://opengraph.githubassets.com/1/${githubRepository}`
+    : null;
+
+  return (
+    <div
+      ref={containerRef}
+      className="group/preview relative w-full md:w-80 lg:w-96 shrink-0 aspect-video overflow-hidden rounded-xl border border-white/10 bg-slate-900"
+    >
+      {project.github ? (
+        githubImageFailed ? (
+          <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-gray-900 to-slate-800 p-5 text-center">
+            <Github size={36} className="text-gray-200" />
+            <span className="text-sm font-semibold text-gray-100">{project.title}</span>
+            <span className="text-xs text-gray-400">GitHub repository</span>
+          </div>
+        ) : (
+          <img
+            src={githubPreview}
+            alt={`${project.title} GitHub repository preview`}
+            loading="lazy"
+            className="h-full w-full object-cover"
+            onError={() => setGithubImageFailed(true)}
+          />
+        )
+      ) : (
+        <iframe
+          title={`${project.title} homepage preview`}
+          src={previewUrl}
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          tabIndex={-1}
+          aria-hidden="true"
+          scrolling="no"
+          className="absolute left-0 top-0 border-0 pointer-events-none"
+          style={{
+            width: DESKTOP_PREVIEW_WIDTH,
+            height: DESKTOP_PREVIEW_HEIGHT,
+            transform: `scale(${scale})`,
+            transformOrigin: "top left",
+          }}
+        />
+      )}
+
+      <a
+        href={project.github || project.live}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${project.title} in a new tab`}
+        title={`Open ${project.title}`}
+        className="absolute inset-0 z-10 flex items-start justify-end p-3 bg-transparent transition-colors hover:bg-black/10"
+      >
+        <span className="rounded-md bg-gray-950/90 border border-white/20 p-2 text-white shadow-lg">
+          <ExternalLink size={16} />
+        </span>
+      </a>
+    </div>
+  );
 }
 
 export default function ProjectsSection() {
@@ -120,39 +167,7 @@ export default function ProjectsSection() {
                 transition={{ delay: i * 0.1 }}
                 className="group rounded-xl bg-white/5 hover:bg-white/10 transition-all p-5 md:p-6 flex flex-col md:flex-row gap-6"
               >
-                {/* Website previews use live iframes. GitHub and this portfolio
-                    use link-based iframe cards because those pages cannot be
-                    safely embedded as regular iframes. */}
-                <div className="relative w-full md:w-64 lg:w-72 shrink-0 aspect-video rounded-lg overflow-hidden border border-white/10 bg-slate-900">
-                  {project.github || project.title === "Portfolio Website" ? (
-                    <iframe
-                      title={`${project.title} repository preview`}
-                      srcDoc={createInfoFrame(project)}
-                      sandbox="allow-popups allow-popups-to-escape-sandbox"
-                      loading="lazy"
-                      className="w-full h-full border-0"
-                    />
-                  ) : (
-                    <iframe
-                      title={`${project.title} live website preview`}
-                      src={project.live}
-                      loading="lazy"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      className="w-full h-full border-0"
-                    />
-                  )}
-
-                  <a
-                    href={project.github || project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Open ${project.title} in a new tab`}
-                    title="Open in new tab"
-                    className="absolute top-2 right-2 z-10 rounded-md bg-gray-950/90 border border-white/20 p-2 text-white hover:bg-gray-800 transition"
-                  >
-                    <ExternalLink size={15} />
-                  </a>
-                </div>
+                <ProjectPreview project={project} />
 
                 {/* CONTENT */}
                 <div className="flex-1 min-w-0">

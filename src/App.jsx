@@ -17,12 +17,14 @@ import Footer from "./components/Footer";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  // Only render the opening screen when this site is used as its own project preview.
+  const isPortfolioPreview = new URLSearchParams(window.location.search).has("portfolioPreview");
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
 
-  if (isLoading) {
+  if (isLoading && !isPortfolioPreview) {
     return <LoadingScreen onLoadComplete={handleLoadingComplete} />;
   }
 
@@ -35,13 +37,17 @@ export default function App() {
         />
         <MainLayout>
           <HeroSection />
-          <AboutSection />
-          <ExperienceSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <EducationSection />
-          <ContactSection />
-          <Footer />
+          {!isPortfolioPreview && (
+            <>
+              <AboutSection />
+              <ExperienceSection />
+              <SkillsSection />
+              <ProjectsSection />
+              <EducationSection />
+              <ContactSection />
+              <Footer />
+            </>
+          )}
         </MainLayout>
       </ThemeProvider>
     </HelmetProvider>

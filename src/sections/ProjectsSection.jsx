@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, Globe2 } from "lucide-react";
 
-const DESKTOP_PREVIEW_WIDTH = 1440;
-const DESKTOP_PREVIEW_HEIGHT = 900;
+const DESKTOP_PREVIEW_WIDTH = 1280;
+const DESKTOP_PREVIEW_HEIGHT = 720;
 
 // Show the first screen of a desktop-sized site, scaled down into the card.
 // Disable iframe interaction so a project preview behaves like a thumbnail.
-function ProjectPreview({ project }) {
+function ProjectPreview({ project, isLiveActive }) {
   const containerRef = useRef(null);
   const [scale, setScale] = useState(0.25);
   const [githubImageFailed, setGithubImageFailed] = useState(false);
@@ -40,6 +40,7 @@ function ProjectPreview({ project }) {
   return (
     <div
       ref={containerRef}
+      data-live-preview={project.live || undefined}
       className="group/preview relative w-full md:w-80 lg:w-96 shrink-0 aspect-video overflow-hidden rounded-xl border border-white/10 bg-slate-900"
     >
       {project.github ? (
@@ -58,7 +59,7 @@ function ProjectPreview({ project }) {
             onError={() => setGithubImageFailed(true)}
           />
         )
-      ) : (
+      ) : isLiveActive ? (
         <iframe
           title={`${project.title} homepage preview`}
           src={previewUrl}
@@ -75,6 +76,12 @@ function ProjectPreview({ project }) {
             transformOrigin: "top left",
           }}
         />
+      ) : (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-slate-800 via-slate-900 to-indigo-950/80 px-4 text-center">
+          <Globe2 size={30} className="text-indigo-300" />
+          <p className="text-sm font-semibold text-gray-100">Live website preview</p>
+          <p className="text-xs text-gray-400">Loads when you stop scrolling here</p>
+        </div>
       )}
 
       <a
@@ -94,6 +101,67 @@ function ProjectPreview({ project }) {
 }
 
 export default function ProjectsSection() {
+  const sectionRef = useRef(null);
+  const [activePreview, setActivePreview] = useState(null);
+
+  // Full website iframes continue running scripts and animations, even when
+  // visually scaled down. Keep only the centered preview active, and unmount
+  // it while the user scrolls so it cannot compete with the portfolio itself.
+  useEffect(() => {
+    let resumeTimer;
+    let scrolling = false;
+
+    const activateClosestPreview = () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
+      const viewportHeight = window.innerHeight;
+      const previews = Array.from(
+        section.querySelectorAll("[data-live-preview]")
+      );
+      const visible = previews
+        .map((node) => {
+          const rect = node.getBoundingClientRect();
+          const visibleHeight = Math.max(
+            0,
+            Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0)
+          );
+          return {
+            url: node.getAttribute("data-live-preview"),
+            distance: Math.abs(rect.top + rect.height / 2 - viewportHeight / 2),
+            visibleHeight,
+          };
+        })
+        .filter((item) => item.visibleHeight >= 60)
+        .sort((a, b) => a.distance - b.distance);
+
+      setActivePreview(visible[0]?.url ?? null);
+    };
+
+    const onScrollOrResize = () => {
+      // Immediately free the iframe's resources as scrolling starts.
+      if (!scrolling) {
+        scrolling = true;
+        setActivePreview(null);
+      }
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => {
+        scrolling = false;
+        activateClosestPreview();
+      }, 450);
+    };
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    resumeTimer = window.setTimeout(activateClosestPreview, 300);
+
+    return () => {
+      window.clearTimeout(resumeTimer);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
+  }, []);
+
   const projects = [
     {
       title: "Rashtriya Rabari Ekta Manch Website",
@@ -145,7 +213,7 @@ export default function ProjectsSection() {
   ];
 
   return (
-    <section id="projects" className="py-20 px-4">
+    <section ref={sectionRef} id="projects" className="py-20 px-4">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ y: 24, opacity: 0 }}
@@ -167,7 +235,7 @@ export default function ProjectsSection() {
                 transition={{ delay: i * 0.1 }}
                 className="group rounded-xl bg-white/5 hover:bg-white/10 transition-all p-5 md:p-6 flex flex-col md:flex-row gap-6"
               >
-                <ProjectPreview project={project} />
+                <ProjectPreview project={project} isLiveActive={activePreview === project.live} />
 
                 {/* CONTENT */}
                 <div className="flex-1 min-w-0">
